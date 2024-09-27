@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Styled Table</title>
+  <style>
+    table.main-table {
+      width: 570px;
+      border-width: 1px;
+      border-color: #c0c0c0;
+      background-color: #e1e4e8;
+      border-collapse: collapse;
+      height: 632px;
+    }
+    td.main-cell {
+      width: 100%;
+      border: 1px solid #c0c0c0;
+    }
+    table.inner-table {
+      width: 566px;
+      border-color: #c0c0c0;
+      border-collapse: collapse;
+      height: 641px;
+    }
+    table.logo-table {
+      width: 550px;
+      height: 100px;
+      border-color: #000000;
+      background-color: #ffffff;
+      border-collapse: collapse;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    td.logo-cell {
+      width: 100%;
+      border-color: #000000;
+    }
+    .logo {
+      width: 160px;
+      height: 60px;
+    }
+    table.content-table {
+      width: 550px;
+      background-color: #ffffff;
+      border-color: #000000;
+      border-collapse: collapse;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    td.trigger-header {
+      width: 477px;
+      text-align: left;
+      border-radius: 20px;
+      background-color: #FF0800;
+      height: 75px;
+      border-color: #000000;
+      margin-bottom: 20px;
+    }
+    td.trigger-header p {
+      text-align: center;
+    }
+    td.trigger-header span {
+      color: #ffffff;
+      font-size: 10pt;
+      font-family: Arial;
+    }
+    .trigger-header input {
+      width: 150px;
+    }
+    .trigger-header input[name="triggerName"] {
+      width: 200px;
+    }
+    td.trigger-info-header {  
+      width: 477px;
+      text-align: left;
+      border-radius: 10px;
+      background-color: #E94144;
+      height: 24px;
+      border-color: #000000;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      margin-top: 20px;
+    }
+    td.trigger-info-header div {
+      text-align: center;
+    }
+    td.label-cell {
+      width: 165px;
+      text-align: left;
+      border-color: #000000;
+    }
+    td.input-cell {
+      width: 358px;
+      text-align: left;
+      border-color: #000000;
+    }
+    .input-cell input {
+      width: 200px;
+    }
+    .input-cell input.short-input {
+      width: 100px;
+    }
+    td.host-info-header {
+      width: 477px;
+      border-radius: 10px;
+      background-color: #E94144;
+      text-align: center;
+      height: 30px;
+      border-color: #000000;
+    }
+  </style>
+</head>
+<body>
+
+<table class="main-table">
+  <tbody>
+    <tr>
+      <td class="main-cell">
+        <table class="inner-table">
+          <tbody>
+            <tr>
+              <td>
+                <table class="logo-table">
+                  <tbody>
+                    <tr>
+                      <td class="logo-cell">
+                        <div style="text-align: center;">
+                          <img src="https://i.postimg.cc/rpVMsGJH/IMG-20240610-WA0001-1.jpg" alt="Logo" class="logo" />
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table class="content-table">
+                  <tbody>
+                    <tr>
+                      <td class="trigger-header" colspan="2">
+                        <p><span><strong><span style="font-size: 18pt;">Problem Started</span></strong></span></p>
+                        
+                        <p>
+                          <input type="text" name="triggerSeverity" placeholder="SEVERITY">
+                          <input type="text" name="triggerName" placeholder="NAME">
+                        </p>
+                      </td>
+                    </tr>
+
+                    <div></div>
+                    
+                    <tr>
+                        
+                      <td class="trigger-info-header" colspan="2">
+                        
+                        <div ><span style="font-size: 14pt; font-family: Arial;"><strong>TRIGGER INFORMATION</strong></span></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="label-cell">
+                        <p><strong>Status:</strong></p>
+                        <p><strong>Problem started:</strong></p>
+                        <p><strong>Problem duration:</strong></p>
+                        <p><strong>Severity:</strong></p>
+                        <p><strong>Description:</strong></p>
+                      </td>
+                      <td class="input-cell">
+                        <p><input type="text" name="triggerStatus" placeholder="STATUS"></p>
+                        <p>at <input type="text" name="eventTime" placeholder="TIME" class="short-input"> on <input type="text" name="eventDate" placeholder="DATE" class="short-input"></p>
+                        <p><input type="text" name="eventDuration" placeholder="DURATION"></p>
+                        <p><input type="text" name="triggerSeverity" placeholder="SEVERITY"></p>
+                        <p><input type="text" name="triggerDescription" placeholder="DESCRIPTION"></p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="host-info-header" colspan="2">
+                        <strong>HOST INFORMATION</strong>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="label-cell"><p><strong>Name:</strong></p></td>
+                      <td class="input-cell">
+                        <p><input type="text" name="hostName" placeholder="HOST.NAME1"> 
+                        <input type="text" name="hostIp" placeholder="HOST.IP1"></p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

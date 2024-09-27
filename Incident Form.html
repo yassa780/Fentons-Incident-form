@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled PDF from Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .form-container {
+            width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .checkbox-group {
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group label {
+            font-weight: normal;
+        }
+
+        .other-textbox {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Fill the Form</h2>
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <select id="category" onchange="updateCheckboxes()">
+                <option value="">Select Category</option>
+                <option value="Agro">Agro</option>
+                <option value="Fiber">Fiber</option>
+                <option value="Advantis">Advantis</option>
+                <option value="Alumex">Alumex</option>
+                <option value="Aventura">Aventura</option>
+                <option value="Leisure">Leisure</option>
+                <option value="South_Asian_Textiles">South Asian Textiles</option>
+                <option value="Mabroc">Mabroc</option>
+                <option value="Fabric">Fabric</option>
+                <option value="DIP">DIP</option>
+                <option value="Haycarb">Haycarb</option>
+                <option value="Martin_Boure">Martin Boure</option>
+                <option value="Fentons">Fentons</option>
+                <option value="HO">HO</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="trackingNumber">Tracking Number:</label>
+            <input type="text" id="trackingNumber" placeholder="Enter your tracking number">
+        </div>
+        <div class="form-group">
+            <label for="dob">Start Date:</label>
+            <input type="date" id="start-date">
+        </div>
+        <div class="form-group">
+            <label for="dob">End Date:</label>
+            <input type="date" id="end-date">
+        </div>
+        <div class="form-group">
+            <label for="startTime">Start Time:</label>
+            <input type="time" id="startTime">
+        </div>
+        <div class="form-group">
+            <label for="endTime">End Time:</label>
+            <input type="time" id="endTime">
+        </div>
+        <div class="form-group">
+            <label for="sector">Sector:</label>
+            <select id="sector">
+                <option value="Government">Government</option>
+                <option value="Financial">Financial</option>
+                <option value="Power">Power</option>
+                <option value="Transportation">Transportation</option>
+                <option value="Manufacturing">Manufacturing</option>
+                <option value="Health">Health</option>
+                <option value="Telecommunications">Telecommunications</option>
+                <option value="Academia">Academia</option>
+                <option value="Petroleum">Petroleum</option>
+                <option value="InfoTech">InfoTech</option>
+                <option value="Other Logistics" selected>Other</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="incident">Incident:</label>
+            <select id="incident">
+                <option value="Phishing">Phishing</option>
+                <option value="Network scanning /Probing">Network scanning /Probing</option>
+                <option value="Break-in/Root Compromise">Break-in/Root Compromise</option>
+                <option value="Virus/Malicious Code">Virus/Malicious Code</option>
+                <option value="Website Defacement">Website Defacement</option>
+                <option value="System Misuse">System Misuse</option>
+                <option value="Spam">Spam</option>
+                <option value="Bot/Botnet">Bot/Botnet</option>
+                <option value="Email Spoofing">Email Spoofing</option>
+                <option value="Denial of Service(DoS)">Denial of Service(DoS)</option>
+                <option value="Distributed Denial of Service(DDoS)">Distributed Denial of Service(DDoS)</option>
+                <option value="User Account Compromise">User Account Compromise</option>
+                <option value="Website Intrusion">Website Intrusion</option>
+                <option value="Social Engineering">Social Engineering</option>
+                <option value="Technical Vulnerability" selected>Technical Vulnerability</option>
+                <option value="IP Spoofing">IP Spoofing</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div class="form-group checkbox-group" id="checkboxGroup">
+            <!-- Checkboxes will be dynamically added here based on the category selection -->
+        </div>
+
+        <div class="form-group">
+            <label for="behavior">Unusual behavior/symptoms:</label>
+            <select id="behavior">
+                <option value="A system alarm or similar indication from an intrusion detection tool" selected>A system
+                    alarm or similar indication from an intrusion detection tool</option>
+                <option value="System-crashes">System crashes</option>
+                <option value="New user accounts/ Accounting discrepancies Failed or successful social engineering">New
+                    user accounts/ Accounting discrepancies Failed or successful social engineering
+                    attempts Unexplained, poor system performance Unaccounted for changes in the DNS tables,
+                    router rules, or firewall rules</option>
+                <option
+                    value="Unexplained elevation or use of privileges Operation of a program or sniffer device to capture network traffic">
+                    Unexplained elevation or use of privileges Operation of a program or sniffer device to
+                    capture network traffic;</option>
+                <option
+                    value="An indicated last time of usage of a user account that does not correspond to the actual last time of usage for that user">
+                    An indicated last time of usage of a user account that does not correspond to the actual last time
+                    of
+                    usage for that user</option>
+                <option value="Unexplained elevation or use of privileges">Unexplained elevation or use of privileges
+                </option>
+                <option value="Operation of a program or sniffer device to capture network traffic">Operation of a
+                    program or sniffer device to capture network traffic</option>
+                <option value="Discrepancy in last time of usage of a user account">Discrepancy in last time of usage of
+                    a user account</option>
+                <option value="System alarm or indication from an intrusion detection tool">System alarm or indication
+                    from an intrusion detection tool</option>
+                <option
+                    value="Altered home pages, which are usually the intentional target for visibility, or other pages on the Web server">
+                    Altered home pages, which are usually the intentional target for visibility, or other pages on
+                    the Web server</option>
+                <option value="Anomalies Suspicious probes Suspicious browsing New files">Anomalies Suspicious probes
+                    Suspicious browsing New files</option>
+                <option
+                    value="Changes in file lengths or dates Attempts to write to system Data modification or deletion">
+                    Changes in file lengths or dates Attempts to write to system Data modification or deletion</option>
+                <option value="Suspicious-browsing">Suspicious browsing</option>
+                <option value="New files">New files</option>
+                <option value="Changes in file lengths or dates">Changes in file lengths or dates</option>
+                <option value="Attempts to write to system, data modification, or deletion">Attempts to write to system,
+                    data modification, or deletion</option>
+                <option value="Denial of service">Denial of service</option>
+                <option
+                    value="Door knob rattling unusual time of usage unusual usage patterns unusual log file entries">
+                    Door knob rattling unusual time of usage unusual usage patterns unusual log file
+                    entries</option>
+                <option value="Presence of new setuid or setgid files Changes in system directories and files Presence of
+                cracking utilities">Presence of new setuid or setgid files Changes in system directories and files
+                    Presence of
+                    cracking utilities</option>
+                <option value="Activity during non-working hours or holidays">Activity during non-working hours or
+                    holidays</option>
+                <option value="Other (Please specify)">Other (Please specify)</option>
+
+            </select>
+        </div>
+
+        <button onclick="generateHTML()">Download</button>
+    </div>
+    <script>
+        const checkboxData = {
+            Agro: [
+                { value: '10.40.24.254', label: 'Agro-HJS', os: '7', lastPatched: '7.2.7', hardware: '80F' },
+                { value: '10.40.27.254', label: 'Agro-Fertilizer', os: '7', lastPatched: '7.2.7', hardware: '60F' },
+                { value: '10.40.1.254', label: 'Haychem Kottawa', os: '7', lastPatched: '7.2.7', hardware: '80F' },
+                { value: '10.40.38.254', label: 'Agro-Dambulla', os: '7', lastPatched: '7.2.7', hardware: '40F' },
+                { value: '10.40.39.254', label: 'Agro-Seeduwa', os: '7', lastPatched: '7.2.7', hardware: '40F' },
+                { value: '10.40.4.254', label: 'Agro-Animal Health Sapugaskanda', os: '7', lastPatched: '7.2.7', hardware: '40F' },
+                { value: '10.40.72.254', label: 'Agro-Pannipitiya', os: '7', lastPatched: '7.2.7', hardware: '40F' },
+                { value: '10.40.78.254', label: 'Agro-Biotech Nanuoya', os: '7', lastPatched: '7.2.7', hardware: '40F' },
+                { value: '10.40.48.254', label: 'Agro-Quality Seeds Boralanda 1', os: '7', lastPatched: '7.2.7', hardware: '40F' },
+                { value: '10.40.71.254', label: 'Agro-Qulity Seeds ,Landscaping,Hokandara', os: '7', lastPatched: '7.2.7', hardware: '40F' },
+                { value: '10.40.37.254', label: 'Agro-Qulaity Seeds Boralanda 2', os: '7', lastPatched: '7.2.7', hardware: '40F' },
+                { value: '10.40.6.254', label: 'Agro-Technica Ekala', os: '7', lastPatched: '7.2.7', hardware: '40F' },
+                { value: '10.40.47.254', label: 'Agro-Quality Seeds Pannala', os: '7', lastPatched: '7.2.7', hardware: '40F' },
+                { value: '10.40.10.254', label: 'Agro-Quality Seeds Bomiriya', os: '7', lastPatched: '7.2.7', hardware: '40F' },
+                { value: '10.40.28.254', label: 'Agro-Quality Seeds Bangladesh', os: '7', lastPatched: '', hardware: '' }
+            ],
+            Fiber: [
+                { value: '	10.40.8.254	 ', label: '	Fiber-Chas.P Madampe	 ', os: '	7	 ', lastPatched: '	7.2.7	 ', hardware: '	40F	 ' },
+                { value: '	10.40.44.254	 ', label: '	Fiber-Chas.P Naththandiya	 ', os: '	7	 ', lastPatched: '	7.2.7	 ', hardware: '	40F	 ' },
+                { value: '	10.40.10.254	 ', label: '	Fiber-Chas.P galle	 ', os: '	7	 ', lastPatched: '	7.2.7	 ', hardware: '	40F	 ' },
+                { value: '	10.40.14.254	 ', label: '	Fiber-Ravi Industries	 ', os: '	7	 ', lastPatched: '	7.2.7	 ', hardware: '	80F	 ' },
+                { value: '	10.40.29.254	 ', label: '	Fiber-Kuliyapitiya	 ', os: '	7	 ', lastPatched: '	7.2.7	 ', hardware: '	40F	 ' },
+                { value: '	10.40.12.254	 ', label: '	Fiber-Creative Polymat	 ', os: '	7	 ', lastPatched: '	7.2.7	 ', hardware: '	40F	 ' },
+                { value: '	10.40.15.254	 ', label: '	Fiber-Rileys Katana	 ', os: '	7	 ', lastPatched: '	7.2.7	 ', hardware: '	40F	 ' },
+                { value: '	10.40.17.254	 ', label: '	Fiber-Volanka Kotugoda	 ', os: '	7	 ', lastPatched: '	7.2.7	 ', hardware: '	80F	 ' }
+            ],
+            Advantis: [
+                { value: '10.40.41.254', label: 'ADV-Hayleys Free Zone 1-Venus', os: '7', lastPatched: '7.2.5', hardware: '60F' },
+                { value: '10.40.16.254', label: 'ADV-Hayleys Free Zone 2- Mecury', os: '7', lastPatched: '7.2.5', hardware: '40F' },
+                { value: '10.40.25.254', label: 'ADV-Logiwiz 1-Kelaniya (3PL Plus)', os: '7', lastPatched: '7.2.5', hardware: '80F' },
+                { value: '10.40.79.254', label: 'ADV-Logiwiz 1-Kotugoda', os: '7', lastPatched: '7.2.5', hardware: '80F' },
+                { value: '10.40.18.254', label: 'ADV-Logistic International', os: '7', lastPatched: '7.2.5', hardware: '60F' },
+                { value: '10.40.11.254', label: 'ADV-Logistic Projects and Engineering', os: '7', lastPatched: '7.2.5', hardware: '80F' },
+                { value: '10.40.53.254', label: 'ADV-Expelogixs', os: '7', lastPatched: '7.2.5', hardware: '40F' },
+                { value: '10.40.51.253', label: 'ADV-Cosco', os: '7', lastPatched: '7.2.5', hardware: '80F' },
+                { value: '10.40.35.254', label: 'ADV-Logiwiz Kelanimulla', os: '7', lastPatched: '7.2.5', hardware: '40F' }
+            ],
+            Alumex: [
+                { value: '10.40.52.254', label: 'Alumex Ho Makola', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	200F	 ' },
+                { value: '10.40.74.254', label: 'Alumex Gonawala', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	60F	 ' },
+                { value: '10.40.84.254', label: 'Alumex Prime', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	80F	 ' }
+            ],
+            Aventura: [
+                { value: '	10.40.2.254	 ', label: '	Aventura	 ', os: '	7	 ', lastPatched: '	7.2.7	 ', hardware: '	40F	 ' }
+            ],
+            Leisure: [
+                { value: '	10.40.57.254	 ', label: '	Amaya Culture Club Dambulla	 ', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	80F	 ' },
+                { value: '	10.40.56.254 ', label: '	Amaya Leisure WTC	 ', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	80F	 ' },
+                { value: '	10.40.58.254 ', label: '	Amaya Kandyan  Resort	 ', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	80F	 ' },
+                { value: '	10.40.3.254 ', label: '	Amaya Sunset Beach	 ', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	80F	 ' },
+                { value: '	10.40.33.254	 ', label: '	Amaya Kingsbury	 ', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	200F	 ' },
+                { value: '		 ', label: '	Amaya Maldives	 ', os: '	7	 ', lastPatched: '		 ', hardware: '	200F	 ' }
+            ],
+            South_Asian_Textiles: [
+                { value: '10.40.101.254', label: 'South Asian Textiles', os: '7', lastPatched: '7.2.5		 ', hardware: '	400E	 ' }
+            ],
+            Mabroc: [
+                { value: '10.40.28.254', label: 'Mabroc', os: '7', lastPatched: '7.2.5		 ', hardware: '	100F	 ' }
+            ],
+            Fabric: [
+                { value: '	10.40.88.254	 ', label: '	Hayleys Fabric Wagawaththa	 ', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	40F	 ' },
+                { value: '	10.40.164.254	 ', label: '	Hayleys Fabric Neboda	 ', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	600E	 ' },
+                { value: '	10.40.88.254	 ', label: '	Hayleys Fabric Wagawaththa	 ', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	40F	 ' },
+                { value: '	10.40.164.254	 ', label: '	Hayleys Fabric Neboda	 ', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	600E	 ' },
+                { value: '	10.40.88.254	 ', label: '	Hayleys Fabric Wagawaththa	 ', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	40F	 ' },
+                { value: '	10.40.164.254	 ', label: '	Hayleys Fabric Neboda	 ', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	600E	 ' }
+            ],
+            DIP: [
+                { value: '	10.40.22.254	 ', label: '	DPL-Kottawa	 ', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	100F	 ' },
+                { value: '	10.40.30.39	 ', label: '	DPL-Thailand	 ', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	100E	 ' },
+                { value: '	10.40.54.254	 ', label: '	DPL-Sport Gloves Biyagama	 ', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	100-F	 ' },
+                { value: '	10.40.32.254	 ', label: '	DPL-Hanwella	 ', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	60F	 ' },
+                { value: '	10.40.26.254	 ', label: '	DPL-Uni Gloves Biyagama	 ', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	60F	 ' },
+                { value: '	10.40.23.254	 ', label: '	DPL-Premier Gloves Biyagama	 ', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	80F	 ' }
+            ],
+            Haycarb: [
+                { value: '	10.40.7.254	 ', label: '	Haycarb-Madampe	 ', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	60F	 ' },
+                { value: '	10.40.5.254	 ', label: '	Haycarb-Wewelduwa	 ', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	40F	 ' },
+                { value: '	10.40.9.254	 ', label: '	Haybarb-Badalgama	 ', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	60F	 ' },
+                { value: '	192.168.10.254	 ', label: '	Haycarb-HPM	 ', os: '	7	 ', lastPatched: '	6.4.4	 ', hardware: '	60E	 ' },
+                { value: '	10.80.109.254	 ', label: '	Haycarb-MMC	 ', os: '	7	 ', lastPatched: '	7.2.7	 ', hardware: '	60E	 ' }
+            ],
+            Martin_Boure: [
+                { value: '	10.40.61.254	 ', label: '	Martin Boure	 ', os: '	7	 ', lastPatched: '	7.2.5	 ', hardware: '	60E	 ' }
+            ],
+            Fentons: [
+                { value: '	10.40.83.254	 ', label: '	Fentons	 ', os: '	7	 ', lastPatched: '	6.4.7	 ', hardware: '	400E	 ' },
+                { value: '	10.40.31.254	 ', label: '	Fentons Warehouse Angoda	 ', os: '	7	 ', lastPatched: '	6.4.11	 ', hardware: '	40F	 ' }
+            ],
+            HO: [
+                { value: '	10.200.200.2	 ', label: '	SLT DR	 ', os: '	7	 ', lastPatched: '	7.2.7	 ', hardware: '	200F	 ' },
+                { value: '	10.74.0.78	 ', label: '	ADV Board room	 ', os: '	7	 ', lastPatched: '	6.4.12	 ', hardware: '	60E	 ' }
+            ]
+        };
+
+        const alertOptions = [
+            "Default-Risky-App-Detection-By-Threat - The Application belongs to monitor category in policy. Application - AnyDesk Category - Remote.Access Action - Pass Multiple Source IPs From LAN Subnet.",
+            "Other" // The "Other" option
+        ];
+
+        function updateCheckboxes() {
+            const category = document.getElementById('category').value;
+            const checkboxGroup = document.getElementById('checkboxGroup');
+            checkboxGroup.innerHTML = '';
+
+            if (category && checkboxData[category]) {
+                checkboxData[category].forEach(item => {
+                    checkboxGroup.innerHTML += `
+                        <label>
+                            <input type="checkbox" class="item" value="${item.value}" data-label="${item.label}" onchange="showSections(this)">
+                            ${item.label}
+                        </label>
+                        <div class="section-group" data-item="${item.value}" style="display: none;">
+                            <select class="alert-dropdown" data-item="${item.value}" onchange="handleAlertDropdownChange(this)">
+                                <option value="">Select Alert Type</option>
+                                ${alertOptions.map(option => `<option value="${option}">${option}</option>`).join('')}
+                            </select>
+                            <input type="text" class="other-textbox" placeholder="Enter other alert type" data-item="${item.value}" style="display: none;">
+                            <input type="text" class="alert-count" placeholder="Enter Alert Count" data-item="${item.value}" required>
+                            <textarea class="incident-description" placeholder="Describe the incident in detail..." rows="5"></textarea><br>
+                            <button type="button" onclick="addMoreSections(this)">Add More</button>
+                        </div>
+                        <br>
+                    `;
+                });
+            }
+        }
+
+        function showSections(checkbox) {
+            const sectionGroup = checkbox.closest('label').nextElementSibling;
+            sectionGroup.style.display = checkbox.checked ? 'block' : 'none';
+        }
+
+        function handleAlertDropdownChange(selectElement) {
+            const selectedValue = selectElement.value;
+            const otherTextbox = selectElement.nextElementSibling;
+
+            if (selectedValue === "Other") {
+                otherTextbox.style.display = 'block';
+            } else {
+                otherTextbox.style.display = 'none';
+            }
+        }
+
+        function addMoreSections(button) {
+            const sectionGroup = button.closest('.section-group');
+            sectionGroup.insertAdjacentHTML('beforeend', `
+                <div class="additional-sections">
+                    <select class="alert-dropdown" onchange="handleAlertDropdownChange(this)">
+                        <option value="">Select Alert Type</option>
+                        ${alertOptions.map(option => `<option value="${option}">${option}</option>`).join('')}
+                    </select>
+                    <input type="text" class="other-textbox" placeholder="Enter other alert type" style="display: none;">
+                    <input type="text" class="alert-count" placeholder="Enter Alert Count" required>
+                    <textarea class="incident-description" placeholder="Describe the incident in detail..." rows="5"></textarea><br>                   
+                    <button type="button" onclick="addMoreSections(this)">Add More</button>
+                    <button type="button" onclick="removeSection(this)">Remove</button>
+                </div>
+            `);
+        }
+
+        function removeSection(button) {
+            const sectionGroup = button.closest('.section-group');
+            if (sectionGroup.querySelectorAll('.additional-sections').length > 0) {
+                button.closest('.additional-sections').remove();
+            } else {
+                // If this is the only section, hide the entire group
+                sectionGroup.style.display = 'none';
+                sectionGroup.previousElementSibling.querySelector('input').checked = false;
+            }
+        }
+
+
+
+
+
+
+        function generateHTML() {
+            let alertCountData = '';
+            const sectionGroups = document.querySelectorAll('.section-group');
+
+            sectionGroups.forEach(sectionGroup => {
+                const itemValue = sectionGroup.dataset.item;
+                const itemLabel = document.querySelector(`input[value="${itemValue}"]`).dataset.label;
+
+                // Get all alert count inputs within this section group
+                const alertCounts = sectionGroup.querySelectorAll('.alert-count');
+                alertCounts.forEach((input, index) => {
+                    const alertCount = input.value;
+                    const alertDropdown = sectionGroup.querySelectorAll('.alert-dropdown')[index].value;
+                    const otherTextbox = sectionGroup.querySelectorAll('.other-textbox')[index].value;
+                    const incidentDescription = sectionGroup.querySelectorAll('.incident-description')[index].value;
+
+                    if (alertCount == 1 && alertCount) {
+                        alertCountData += `<p><span>${itemLabel} :</span> ${alertCount} alert</p>`;
+                    } else if ((alertCount > 1 || alertCount == 0) && alertCount){
+                        alertCountData += `<p><span>${itemLabel} :</span> ${alertCount} alerts</p>`;
+                    }
+                    if (alertDropdown) {
+                        alertCountData += `<p><span>${itemLabel} Alert Type :</span> ${alertDropdown === 'Other' ? otherTextbox : alertDropdown}</p>`;
+                    }
+                    if (incidentDescription) {
+                        alertCountData += `<p><span>${itemLabel} Incident Description :</span> ${incidentDescription}</p>`;
+                    }
+                    alertCountData += `<br>`;
+                });
+            });
+
+            // The rest of your generateHTML() function remains the same...
+            const categoryForTitle = document.getElementById('category').value;
+            const trackingNumber = document.getElementById('trackingNumber').value;
+            const startDate = document.getElementById('start-date').value;
+            const endDate = document.getElementById('end-date').value;
+            const startTime = document.getElementById('startTime').value;
+            const endTime = document.getElementById('endTime').value;
+            const sector = document.getElementById('sector').value;
+            const incident = document.getElementById('incident').value;
+            const unusual = document.getElementById('behavior').value;
+            const items = document.querySelectorAll('.item:checked');
+            let checkedItems = '';
+            let itemTable = '<table style="width: 90%; border-collapse: collapse; margin-top: 20px; font-size: 14px;"><tr><th style="border: 1px solid #000; padding: 5px;">IP Address</th><th style="border: 1px solid #000; padding: 5px;">Item Name</th><th style="border: 1px solid #000; padding: 5px;">Operating System</th><th style="border: 1px solid #000; padding: 5px;">Last Patched Version</th><th style="border: 1px solid #000; padding: 5px;">Hardware</th></tr>';
+
+            items.forEach(item => {
+                checkedItems += `<li>${item.dataset.label}</li>`;
+                let ipAddress = item.value;
+                let operatingSystem = '';
+                let lastPatched = '';
+                let hardwareVendorModel = '';
+
+                checkboxData['Agro'].forEach(data => {
+                    if (data.value === item.value) {
+                        operatingSystem = data.os;
+                        lastPatched = data.lastPatched;
+                        hardwareVendorModel = data.hardware;
+                    }
+                });
+                checkboxData['Fiber'].forEach(data => {
+                    if (data.value === item.value) {
+                        operatingSystem = data.os;
+                        lastPatched = data.lastPatched;
+                        hardwareVendorModel = data.hardware;
+                    }
+                });
+                checkboxData['Advantis'].forEach(data => {
+                    if (data.value === item.value) {
+                        operatingSystem = data.os;
+                        lastPatched = data.lastPatched;
+                        hardwareVendorModel = data.hardware;
+                    }
+                });
+                checkboxData['Alumex'].forEach(data => {
+                    if (data.value === item.value) {
+                        operatingSystem = data.os;
+                        lastPatched = data.lastPatched;
+                        hardwareVendorModel = data.hardware;
+                    }
+                });
+                checkboxData['Aventura'].forEach(data => {
+                    if (data.value === item.value) {
+                        operatingSystem = data.os;
+                        lastPatched = data.lastPatched;
+                        hardwareVendorModel = data.hardware;
+                    }
+                });
+                checkboxData['Leisure'].forEach(data => {
+                    if (data.value === item.value) {
+                        operatingSystem = data.os;
+                        lastPatched = data.lastPatched;
+                        hardwareVendorModel = data.hardware;
+                    }
+                });
+                checkboxData['South_Asian_Textiles'].forEach(data => {
+                    if (data.value === item.value) {
+                        operatingSystem = data.os;
+                        lastPatched = data.lastPatched;
+                        hardwareVendorModel = data.hardware;
+                    }
+                });
+                checkboxData['Mabroc'].forEach(data => {
+                    if (data.value === item.value) {
+                        operatingSystem = data.os;
+                        lastPatched = data.lastPatched;
+                        hardwareVendorModel = data.hardware;
+                    }
+                });
+                checkboxData['Fabric'].forEach(data => {
+                    if (data.value === item.value) {
+                        operatingSystem = data.os;
+                        lastPatched = data.lastPatched;
+                        hardwareVendorModel = data.hardware;
+                    }
+                });
+                checkboxData['DIP'].forEach(data => {
+                    if (data.value === item.value) {
+                        operatingSystem = data.os;
+                        lastPatched = data.lastPatched;
+                        hardwareVendorModel = data.hardware;
+                    }
+                });
+                checkboxData['Haycarb'].forEach(data => {
+                    if (data.value === item.value) {
+                        operatingSystem = data.os;
+                        lastPatched = data.lastPatched;
+                        hardwareVendorModel = data.hardware;
+                    }
+                });
+                checkboxData['Martin_Boure'].forEach(data => {
+                    if (data.value === item.value) {
+                        operatingSystem = data.os;
+                        lastPatched = data.lastPatched;
+                        hardwareVendorModel = data.hardware;
+                    }
+                });
+                checkboxData['Fentons'].forEach(data => {
+                    if (data.value === item.value) {
+                        operatingSystem = data.os;
+                        lastPatched = data.lastPatched;
+                        hardwareVendorModel = data.hardware;
+                    }
+                });
+                checkboxData['HO'].forEach(data => {
+                    if (data.value === item.value) {
+                        operatingSystem = data.os;
+                        lastPatched = data.lastPatched;
+                        hardwareVendorModel = data.hardware;
+                    }
+                });
+                itemTable += `<tr><td style="border: 1px solid #000; padding: 5px;">${ipAddress}</td><td style="border: 1px solid #000; padding: 5px;">${item.dataset.label}</td><td style="border: 1px solid #000; padding: 5px;">${operatingSystem}</td><td style="border: 1px solid #000; padding: 5px;">${lastPatched}</td><td style="border: 1px solid #000; padding: 5px;">${hardwareVendorModel}</td></tr>`;
+            });
+
+            if (checkedItems === '') {
+                checkedItems = '<li>No items selected.</li>';
+            } else {
+                itemTable += '</table>';
+            }
+
+            const htmlContent = `
+                
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${categoryForTitle} Incident Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .report-container {
+            width: 90%;
+            max-width: 800px;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+            height: max-content;
+        }
+
+        .report-header {
+            background-color: green;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+            font-size: 24px;
+            padding: 15px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .image-container img {
+            height: 80px;
+            width: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .report-section {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 15px;
+        }
+
+        .report-section:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .report-section h3 {
+            margin-bottom: 10px;
+            color: green;
+            border-bottom: 2px solid green;
+            padding-bottom: 5px;
+        }
+
+        .report-section p {
+            margin: 5px 0;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .report-section p span {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .report-footer {
+            text-align: center;
+            padding: 10px;
+            background-color: green;
+            color: #fff;
+            border-radius: 0 0 8px 8px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="report-container">
+        <div class="image-container">
+            <img src="https://i.ibb.co/LQQ2vVw/sample-image.jpg" alt="Company Logo">
+            <img src="https://i.postimg.cc/rpVMsGJH/IMG-20240610-WA0001-1.jpg" alt="Top Right Image">
+        </div>
+        <div class="report-header">
+            ${categoryForTitle} Incident Report
+        </div>
+
+        <div class="report-section">
+            <h3>Incident Tracking Number:</h3>
+            <p><span>Tracking Number:</span>${trackingNumber}</p>
+        </div>
+
+        <div class="report-section">
+            <h3>1. Contact Information for this Incident:</h3>
+            <p><span>Name:</span> Sandun De Zoysa</p>
+            <p><span>Organization:</span> Hayley’s Advantis</p>
+            <p><span>Title:</span> Deputy General Manager</p>
+            <p><span>Mobile:</span> 0777751592</p>
+            <p><span>Email:</span> sg.zoysa@groupit.hayleys.com</p>
+            <p><span>Address:</span> Corporate office, No.400, Deans Road, Colombo.</p>
+        </div>
+
+        <div class="report-section">
+            <h3>2. Sector:</h3>
+            <p><span>Sector:</span> ${sector}<p>
+        </div>
+
+        <div class="report-section">
+            <h3>3. Physical Location of Affected Computer:</h3>
+            <p> 
+                        <ol style="font-size: 16px; padding-left: 10px; ">
+                            ${checkedItems}
+                        </ol>
+        </div>
+
+        <div class="report-section">
+            <h3>4. Date and Time Incident Occurred:</h3>
+            <p><span>Date:</span> ${startDate} to ${endDate}</p>
+            <p><span>Time:</span> ${startTime} to ${endTime}</p>
+        </div>
+
+        <div class="report-section">
+            <h3>5. Is the affected system/network critical to the organization’s mission?</h3>
+            <p><span>Critical:</span> Yes </p>
+        </div>
+
+        <div class="report-section">
+            <h3>6. Information of Affected System:</h3>
+            <div style="margin-bottom: 20px;">
+                        ${items.length > 0 ? itemTable : ''}
+                    </div>
+        </div>
+
+        <div class="report-section">
+            <h3>7. Type of Incident:</h3>
+            <p>${incident}</p>
+        </div>
+
+        <div class="report-section">
+            <h3>8. Description of Incident:</h3>
+            <p> ${alertCountData} </p>
+        </div>
+
+        <div class="report-section">
+            <h3>9. Unusual behavior/symptoms:</h3>
+            <p>${unusual}</p>
+        </div>
+
+        <div class="report-section">
+            <h3>10. When and How was the incident detected:</h3>
+            <p>Through Forti Analyzer</p>
+        </div>
+
+        <div class="report-section">
+            <h3>11. Additional Information: (Include any other details noticed, relevant to the Security Incident.)</h3>
+            <p>Whether log being submitted: Yes</p>
+            <p>Mode of submission: Outlook</p>
+        </div>
+
+        <div class="report-footer">
+            Fentons IT - NOC
+        </div>
+    </div>
+    </div>
+
+</body>
+</html>
+            `;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = (categoryForTitle + " Incident Report");
+            link.click();
+
+        }
+    </script>
+</body>
+
+</html>
